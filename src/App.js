@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Styleform from './component/Styleform';
+import StyledPreview from './component/StylePreview';
 
 function App() {
+
+  const [style, setStyle] = useState({
+    backgroundColor: '#ffffff',
+    textColor: '#000000',
+    fontStyle: 'Arial',
+    fontSize: 16,
+  });
+
+  const applyStyle = (newStyle) => {
+    setStyle(newStyle);
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <div className="container">
+      <h1 className="text-center">Dynamic CSS Styling Form</h1>
+      <Styleform onApplyStyle={applyStyle} />
+      <StyledPreview style={style} />
     </div>
   );
 }
